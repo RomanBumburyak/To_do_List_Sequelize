@@ -1,0 +1,23 @@
+<p> Indexicus </p>
+
+
+<form class="/" action="/" method="post">
+  <input type="text" name="name" value="" placeholder="Name">
+  <input type="email" name="description" value="" placeholder="Chore Description">
+  <textarea name= "bio" rows="8" cols="8"></textarea>
+  <input type="submit" value="submit" placeholder="Click me!">
+</form>
+
+
+{{#user}}
+<a href="/{{id}}">{{name}}</a>  <br>
+{{description}} <br>
+{{completion}} <br>
+
+<a href="/destroy/{{id}}">DELETE</a> <br>
+
+{{/user}}
+
+{{^user}}
+  <p> No Users Found </p>
+{{/user}}
