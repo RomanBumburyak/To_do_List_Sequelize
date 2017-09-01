@@ -1,0 +1,12 @@
+.Chore_Galore{
+  text-align: center;
+  color: grey;
+  font-family: sans-serif;
+  font-weight: bold;
+
+}
+
+.creaticus {
+  display: flex;                             
+  justify-content: center;
+}

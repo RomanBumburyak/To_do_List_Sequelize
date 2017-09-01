@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Chore = sequelize.define('Chore', {
+  var chores = sequelize.define('chores', {
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     completion: DataTypes.BOOLEAN
@@ -11,5 +11,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Chore;
+  return chores;
 };

@@ -7,7 +7,7 @@ const models= require("../models/index");
 
 /////////////////////////////////////////////
 router.get("/", function (req,res){
-  models.Chore.findAll({
+  models.chores.findAll({
     order: ['name']
   })
   .then(function(data) {             ///run.then
@@ -17,7 +17,7 @@ router.get("/", function (req,res){
 });
 //////////////////////////////////////////////////////////////////
 router.get("/:id", function (req,res) {
-  models.Chore.findOrCreate({                     ////important method it will find or create, and will save also;
+  models.chores.findOrCreate({                     ////important method it will find or create, and will save also;
     where: {
       id: req.params.id
     }
@@ -28,9 +28,9 @@ router.get("/:id", function (req,res) {
     res.render("index", {user : data});
   });
 });
-/////////////////////////////////////////////////////////////Delete The chore from the List
-router.get("/destroy/:id", function (req,res) {
-  models.Chore.destroy({                     ////important method it will find or create, and will save also;
+/////////////////////////////////////////////////////////////Delete The chores from the List
+router.post("/destroy/:id", function (req,res) {
+  models.chores.destroy({                     ////important method it will find or create, and will save also;
     where: {
       id: req.params.id
     }
@@ -44,7 +44,7 @@ router.get("/destroy/:id", function (req,res) {
 
 ////////////////////////////////////////////////////This is the edit functionality:
 router.post("/edit/:id", function (req,res) {
-  models.Chore.update({
+  models.chores.update({
     name: req.body.name,
     description: req.body.description,
     completion: req.body.completion
@@ -59,11 +59,11 @@ router.post("/edit/:id", function (req,res) {
 });
 
 //////////////////////////////////////////////////////////////
-router.post("/", function (req,res){
-    models.Chore.create({                                          //////creating and saving all in one place
-    name:req.body.name,
+router.post("/create", function (req,res){
+    models.chores.create({                                          //////creating and saving all in one place
+    name:req.body.chores,
     description: req.body.description,
-    completion: req.body.completion
+    completion: false
   })
         .then(function(data) {
           console.log(data);
@@ -73,8 +73,8 @@ router.post("/", function (req,res){
 ///////////////////////////////////////////////
 
 router.post("/completed/:id", function(req, res) {
- models.Chore.update({
-   completed:true
+ models.chores.update({
+   completion:true
  },
  {
    where:{
@@ -86,16 +86,16 @@ router.post("/completed/:id", function(req, res) {
  });
 //////////////////////////////////////////////// Post to create :
 
- router.post("/create", function(req, res) {
-  models.Chore.create({
-    Chore: req.body.Chore,
-    completed:false
-  })
-  .then(function(data){
-    data = data;
-    res.redirect("/");
-  })
-});
+//  router.post("/create", function(req, res) {
+//   models.chores.create({
+//     name: req.body.chores,
+//     completion:false
+//   })
+//   .then(function(data){
+//     data = data;
+//     res.redirect("/");
+//   })
+// });
 ///////////////////////////////////////////
 
 
